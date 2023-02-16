@@ -1,7 +1,6 @@
 package pohovor.projekt.csob.dbmodel.entities.weather;
 
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
 import pohovor.projekt.csob.dbmodel.DBconstants;
 import pohovor.projekt.csob.dbmodel.MyEntity;
 import pohovor.projekt.csob.dbmodel.entities.airport.Airport;
@@ -20,9 +19,19 @@ public class Weather extends MyEntity {
     private Airport airport;
 
     @Temporal(TemporalType.DATE)
-    @CreationTimestamp
     @Column(name = DBconstants.Weather.updateDate, nullable = false)
     private Date updateDate;
+
+    @PrePersist
+    private void onCreate() {
+        this.updateDate = new Date();
+    }
+
+    @PreUpdate
+    private void onUpdate() {
+        this.updateDate = new Date();
+    }
+
 
     @Override
     public boolean equals(Object o) {
