@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 @Data
 @MappedSuperclass
@@ -11,9 +12,17 @@ public abstract class MyEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = DBconstants.Entity.id)
     private Long id;
 
-    @Column(name = "Creation_Date", nullable = false)
+    @Column(name = DBconstants.Entity.creationDate, nullable = false)
     private Date creationDate;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyEntity myEntity = (MyEntity) o;
+        return Objects.equals(id, myEntity.id) && Objects.equals(creationDate, myEntity.creationDate);
+    }
 }
