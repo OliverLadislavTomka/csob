@@ -15,7 +15,7 @@ public class AirportSlot extends MyEntity {
 
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = DBconstants.AirportSlot.airport_id, nullable = false)
+    @JoinColumn(nullable = false, name = DBconstants.AirportSlot.airport_id)
     private Airport airport;
 
     @OneToOne(fetch = FetchType.EAGER)

@@ -1,6 +1,9 @@
 package pohovor.projekt.csob.dbmodel.entities.Aircraft;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 import pohovor.projekt.csob.dbmodel.DBconstants;
 import pohovor.projekt.csob.dbmodel.MyEntity;
 import pohovor.projekt.csob.dbmodel.entities.airportSlots.AirportSlot;
@@ -19,6 +22,7 @@ public class Aircraft extends MyEntity {
     @Column(nullable = false, name = DBconstants.Aircraft.aircraftType)
     private AircraftType type;
 
+    @Temporal(TemporalType.DATE)
     @Column(nullable = false, name = DBconstants.Aircraft.registrationDate)
     private Date regisration;
 
@@ -31,7 +35,7 @@ public class Aircraft extends MyEntity {
     @Column(nullable = false, name = DBconstants.Aircraft.age)
     private Long age;
 
-    @OneToOne(mappedBy = "ID",optional = true,fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "aircraft",fetch = FetchType.EAGER)
     private AirportSlot airportSlot;
 
 

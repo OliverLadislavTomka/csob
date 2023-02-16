@@ -1,6 +1,9 @@
 package pohovor.projekt.csob.dbmodel;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -15,6 +18,8 @@ public abstract class MyEntity {
     @Column(name = DBconstants.Entity.id)
     private Long id;
 
+    @Temporal(TemporalType.DATE)
+    @CreationTimestamp
     @Column(name = DBconstants.Entity.creationDate, nullable = false)
     private Date creationDate;
 

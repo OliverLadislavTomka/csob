@@ -8,6 +8,7 @@ public class DBconstants {
         public static final String airportRunway = "AIRPORTRUNWAY";
         public static final String weather = "WEATHER";
         public static final String airportSlot = "AIRPORTSLOT";
+        public static final String flyLog = "FLYLOG";
     }
 
     public static class Entity {
@@ -40,7 +41,15 @@ public class DBconstants {
         public static final String aircraft_id = "AIRCRAFT_ID";
     }
 
+    public static class FlyLog {
+        public static final String flyType = "FLYTYPE";
 
+    }
+
+    public static class Weather {
+        public static final String airport_id = "AIRPORT_ID";
+        public static final String updateDate = "UPDATEDATE";
+    }
 
 
 
