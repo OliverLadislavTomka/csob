@@ -15,7 +15,7 @@ import java.util.Date;
 public class Weather extends MyEntity {
 
     @OneToOne
-    @JoinColumn(name = DBconstants.Weather.airport_id)
+    @JoinColumn(name = DBconstants.Weather.airport_id, nullable = false)
     private Airport airport;
 
     @Temporal(TemporalType.DATE)
