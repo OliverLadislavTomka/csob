@@ -13,6 +13,7 @@ import pohovor.projekt.csob.dbmodel.entities.flyLogging.FlyLog;
 import pohovor.projekt.csob.dbmodel.entities.flyLogging.FlyType;
 import pohovor.projekt.csob.dbmodel.entities.runways.Runway;
 import pohovor.projekt.csob.dbmodel.entities.weather.Weather;
+import pohovor.projekt.csob.exceptions.BadRequestException;
 import pohovor.projekt.csob.exceptions.IdNotFoundException;
 import pohovor.projekt.csob.repositories.AirportRepository;
 import pohovor.projekt.csob.services.aircraft.IAircraftService;
@@ -85,12 +86,15 @@ public class AirportServiceImpl implements IAirportService {
             aircraft = aircraftService.create(request.getRequest());
             System.out.println("Aircraft with serial number " + aircraft.getSerialNumber() +" is visiting airport for the first time. Creating new aircraft");
         }
+
         AirportUtil.isAircraftCompatible(aircraft,airport);
         AirportUtil.hasFreeRunway(airport);
         if (request.getType() == TypeOfRequest.LANDING) {
+            if (aircraft.getAirportSlot() != null) throw new BadRequestException();
             AirportUtil.hasFreeHangar(airport);
             landAircraft(airport,aircraft);
         } else {
+            if (aircraft.getAirportSlot() == null) throw new BadRequestException();
             flyAircraft(airport, aircraft);
         }
         return new ResponseObject();
