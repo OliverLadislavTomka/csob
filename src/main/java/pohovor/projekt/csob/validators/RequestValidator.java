@@ -16,6 +16,9 @@ public class RequestValidator implements IValidator{
                 this.request.getRequest().getRegistration() != null &&
                 this.request.getRequest().getType() != null &&
                 this.request.getRequest().getSerialNumber() != null &&
-                this.request.getRequest().getRegistrationCountry() != null)) throw new BadRequestException();
+                this.request.getRequest().getRegistrationCountry() != null)) {
+            System.out.println("New request did not contain all attributes that were needed!");
+            throw new BadRequestException();
+        }
     }
 }

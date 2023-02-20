@@ -42,9 +42,13 @@ public class AirportServiceImpl implements IAirportService {
     @Override
     public ResponseObject createNewFlight(Long airportId, AirRequest request) {
         new RequestValidator(request).validate();
+        System.out.println("New request");
         Airport airport = airportRepository.findById(airportId).orElseThrow(IdNotFoundException::new);
         Aircraft aircraft = aircraftService.findAircraft(request.getRequest().getSerialNumber());
-        if (aircraft == null) aircraft = aircraftService.create(request.getRequest());
+        if (aircraft == null) {
+            aircraft = aircraftService.create(request.getRequest());
+            System.out.println("Aircraft with serial number " + aircraft.getSerialNumber() +" is visiting airport for the first time. Creating new aircraft");
+        }
         AirportUtil.isAircraftCompatible(aircraft,airport);
         AirportUtil.hasFreeRunway(airport);
         if (request.getType() == TypeOfRequest.LANDING) {

@@ -19,6 +19,7 @@ public class RunwayServiceImpl implements IRunwayService{
 
     @Override
     public void bookRunway(Airport airport, Aircraft aircraft) {
+        System.out.println("Booking runway.");
         Runway runway = runwayRepository.findByFreeAfterAfterAndAirport_Id(new Date(), airport.getId());
         runway.setFreeAfter(new Date(new Date().getTime() + 300));
         runwayRepository.save(runway);

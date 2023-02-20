@@ -14,6 +14,7 @@ public class FlyLogServiceImpl implements IFlyLogService {
 
     @Override
     public void createNewLog(FlyLog flyLog) {
+        System.out.println("The flight log has been logged into database.");
         flyLogRepository.save(flyLog);
     }
 }
