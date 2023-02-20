@@ -7,4 +7,6 @@ public interface IAircraftService {
     Aircraft findAircraft(Long serialNumber);
 
     Aircraft create(AircraftRequest request);
+
+    Aircraft update(Aircraft request);
 }

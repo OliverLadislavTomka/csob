@@ -7,12 +7,15 @@ import pohovor.projekt.csob.DTO.ResponseObject;
 import pohovor.projekt.csob.DTO.TypeOfRequest;
 import pohovor.projekt.csob.dbmodel.entities.Aircraft.Aircraft;
 import pohovor.projekt.csob.dbmodel.entities.airport.Airport;
+import pohovor.projekt.csob.dbmodel.entities.airportSlots.AirportSlot;
 import pohovor.projekt.csob.dbmodel.entities.flyLogging.FlyLog;
 import pohovor.projekt.csob.dbmodel.entities.flyLogging.FlyType;
 import pohovor.projekt.csob.exceptions.IdNotFoundException;
 import pohovor.projekt.csob.repositories.AirportRepository;
 import pohovor.projekt.csob.services.aircraft.IAircraftService;
 import pohovor.projekt.csob.services.flylogging.IFlyLogService;
+import pohovor.projekt.csob.services.hangars.IAirportSlotService;
+import pohovor.projekt.csob.services.runways.IRunwayService;
 import pohovor.projekt.csob.utils.AirportUtil;
 import pohovor.projekt.csob.validators.RequestValidator;
 
@@ -29,6 +32,12 @@ public class AirportServiceImpl implements IAirportService {
 
     @Autowired
     IFlyLogService flyLogService;
+
+    @Autowired
+    IRunwayService runwayService;
+
+    @Autowired
+    IAirportSlotService slotService;
 
     @Override
     public ResponseObject createNewFlight(Long airportId, AirRequest request) {
@@ -50,10 +59,18 @@ public class AirportServiceImpl implements IAirportService {
 
     private void landAircraft(Airport airport, Aircraft aircraft) {
         flyLogService.createNewLog(new FlyLog(FlyType.ARRIVAL, airport.getId(), aircraft.getId()));
+        runwayService.bookRunway(airport, aircraft);
+        AirportSlot airportSlot = slotService.bookHangar(airport, aircraft);
+        aircraft.setAirportSlot(airportSlot);
+        aircraftService.update(aircraft);
     }
 
     private void flyAircraft(Airport airport, Aircraft aircraft) {
         flyLogService.createNewLog(new FlyLog(FlyType.DEPARTURE, airport.getId(), aircraft.getId()));
+        runwayService.bookRunway(airport, aircraft);
+        slotService.freeHangar(airport, aircraft);
+        aircraft.setAirportSlot(null);
+        aircraftService.update(aircraft);
     }
 
 }

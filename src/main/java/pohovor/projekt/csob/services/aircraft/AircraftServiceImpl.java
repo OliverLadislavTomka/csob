@@ -15,7 +15,7 @@ public class AircraftServiceImpl implements IAircraftService{
     private AircraftRepository aircraftRepository;
     @Override
     public Aircraft findAircraft(Long serialNumber) {
-        return aircraftRepository.findBySerialNumber(serialNumber);
+        return this.aircraftRepository.findBySerialNumber(serialNumber);
     }
 
     @Override
@@ -28,6 +28,11 @@ public class AircraftServiceImpl implements IAircraftService{
         aircraft.setRegisration(request.getRegistration());
         aircraft.setRegistrationCountry(request.getRegistrationCountry());
         aircraft.setAge(request.getAge());
-        return aircraftRepository.save(aircraft);
+        return this.aircraftRepository.save(aircraft);
+    }
+
+    @Override
+    public Aircraft update(Aircraft request) {
+        return this.aircraftRepository.save(request);
     }
 }
