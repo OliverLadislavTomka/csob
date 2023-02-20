@@ -6,11 +6,10 @@ import pohovor.projekt.csob.DTO.AircraftRequest;
 import pohovor.projekt.csob.DTO.AircraftType;
 import pohovor.projekt.csob.dbmodel.entities.Aircraft.Aircraft;
 import pohovor.projekt.csob.repositories.AircraftRepository;
-import pohovor.projekt.csob.dbmodel.entities.Aircraft.*;
 
 @Service
 @Primary
-public class AircraftService implements IAircraftService{
+public class AircraftServiceImpl implements IAircraftService{
 
     @Autowired
     private AircraftRepository aircraftRepository;

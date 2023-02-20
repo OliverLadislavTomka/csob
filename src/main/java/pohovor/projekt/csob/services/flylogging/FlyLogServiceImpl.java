@@ -7,7 +7,7 @@ import pohovor.projekt.csob.repositories.FlyLogRepository;
 
 @Service
 @Primary
-public class FlyLogService implements IFlyLogService {
+public class FlyLogServiceImpl implements IFlyLogService {
 
     @Autowired
     FlyLogRepository flyLogRepository;
