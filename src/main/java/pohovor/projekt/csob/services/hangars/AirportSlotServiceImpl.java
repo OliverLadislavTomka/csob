@@ -18,7 +18,7 @@ public class AirportSlotServiceImpl implements IAirportSlotService{
     @Override
     public AirportSlot bookHangar(Airport airport, Aircraft aircraft) {
         System.out.println("Booking hangar.");
-        AirportSlot airportSlot = db.findAllByAirport_IdAndAircraft_Id(airport.getId(), null);
+        AirportSlot airportSlot = db.findAllByAirport_IdAndAircraft_Id(airport.getId(), null).stream().findFirst().get();
         airportSlot.setAircraft(aircraft);
         return db.save(airportSlot);
     }
@@ -26,7 +26,7 @@ public class AirportSlotServiceImpl implements IAirportSlotService{
     @Override
     public void freeHangar(Airport airport, Aircraft aircraft) {
         System.out.println("Freeing hangar.");
-        AirportSlot airportSlot = db.findAllByAirport_IdAndAircraft_Id(airport.getId(), null);
+        AirportSlot airportSlot = db.findAllByAirport_IdAndAircraft_Id(airport.getId(), aircraft.getId()).stream().findFirst().get();
         airportSlot.setAircraft(null);
         db.save(airportSlot);
     }

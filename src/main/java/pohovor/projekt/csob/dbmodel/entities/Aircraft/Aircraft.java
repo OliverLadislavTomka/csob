@@ -27,7 +27,7 @@ public class Aircraft extends MyEntity {
     private String registrationCountry;
 
     @Column(unique = true, nullable = false, name = DBconstants.Aircraft.serialNumber)
-    private Long serialNumber;
+    private String serialNumber;
 
     @Column(nullable = false, name = DBconstants.Aircraft.age)
     private Long age;
@@ -44,7 +44,18 @@ public class Aircraft extends MyEntity {
     }
 
     @Override
+    public String toString() {
+        return "Aircraft{" +
+                "type=" + type +
+                ", regisration=" + regisration +
+                ", registrationCountry='" + registrationCountry + '\'' +
+                ", serialNumber='" + serialNumber + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), type, regisration, registrationCountry, serialNumber, age, airportSlot);
+        return Objects.hash(super.hashCode(), type, regisration, registrationCountry, serialNumber, age);
     }
 }

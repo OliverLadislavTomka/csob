@@ -7,6 +7,7 @@ import pohovor.projekt.csob.dbmodel.entities.Aircraft.Aircraft;
 import pohovor.projekt.csob.dbmodel.entities.airport.Airport;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Data
@@ -15,7 +16,7 @@ public class AirportSlot extends MyEntity {
 
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = DBconstants.AirportSlot.airport_id)
+    @JoinColumn(name = DBconstants.AirportSlot.airport_id)
     private Airport airport;
 
     @OneToOne(fetch = FetchType.EAGER)
@@ -29,4 +30,16 @@ public class AirportSlot extends MyEntity {
         return super.equals(o);
     }
 
+    @Override
+    public String toString() {
+        return "AirportSlot{" +
+                "airport=" + airport +
+                ", aircraft=" + aircraft +
+                '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), airport.getId(), aircraft);
+    }
 }

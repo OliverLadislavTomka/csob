@@ -27,9 +27,12 @@ public class FlyLog extends MyEntity {
     private Long airport_id;
     private Long airport_slot_id;
 
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "FlyLog{" +
+                "flyType=" + flyType +
+                ", airport_id=" + airport_id +
+                ", airport_slot_id=" + airport_slot_id +
+                '}';
+    }
 }

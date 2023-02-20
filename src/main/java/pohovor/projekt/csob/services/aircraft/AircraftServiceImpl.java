@@ -14,7 +14,7 @@ public class AircraftServiceImpl implements IAircraftService{
     @Autowired
     private AircraftRepository aircraftRepository;
     @Override
-    public Aircraft findAircraft(Long serialNumber) {
+    public Aircraft findAircraft(String serialNumber) {
         return this.aircraftRepository.findBySerialNumber(serialNumber);
     }
 
@@ -27,6 +27,7 @@ public class AircraftServiceImpl implements IAircraftService{
                 pohovor.projekt.csob.dbmodel.entities.Aircraft.AircraftType.CARGO);
         aircraft.setRegisration(request.getRegistration());
         aircraft.setRegistrationCountry(request.getRegistrationCountry());
+        aircraft.setSerialNumber(request.getSerialNumber());
         aircraft.setAge(request.getAge());
         return this.aircraftRepository.save(aircraft);
     }

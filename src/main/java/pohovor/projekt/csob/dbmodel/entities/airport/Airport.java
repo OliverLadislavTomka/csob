@@ -33,7 +33,7 @@ public class Airport extends MyEntity {
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy = "airport")
     private List<Runway> runwaysSet = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy = "airport")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "airport")
     private Weather weather;
 
     @Override
@@ -44,7 +44,16 @@ public class Airport extends MyEntity {
     }
 
     @Override
+    public String toString() {
+        return "Airport{" +
+                "hangarCapacity=" + hangarCapacity +
+                ", runwayCapacity=" + runwayCapacity +
+                ", airportType=" + airportType +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), hangarCapacity, runwayCapacity, airportType, weather);
+        return Objects.hash(super.hashCode(), hangarCapacity, runwayCapacity, airportType);
     }
 }

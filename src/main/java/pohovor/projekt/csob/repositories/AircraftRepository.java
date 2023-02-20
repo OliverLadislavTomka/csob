@@ -6,5 +6,5 @@ import pohovor.projekt.csob.dbmodel.entities.Aircraft.Aircraft;
 
 @Repository
 public interface AircraftRepository extends CrudRepository<Aircraft, Long> {
-    Aircraft findBySerialNumber(Long serialNumber);
+    Aircraft findBySerialNumber(String serialNumber);
 }

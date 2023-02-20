@@ -57,7 +57,7 @@ public class AirportServiceImpl implements IAirportService {
         weather.setAirport(airport);
         airport.setWeather(weather);
         this.setSlots(airport);
-        airport.setRunwaysSet(this.setRunways(airport));
+        this.setRunways(airport);
         airportRepository.save(airport);
 
         Airport airport2 = new Airport();
@@ -68,10 +68,10 @@ public class AirportServiceImpl implements IAirportService {
         airportRepository.save(airport2);
         airport2.setWeather(new Weather());
         Weather weather2 = new Weather();
-        weather2.setAirport(airport);
+        weather2.setAirport(airport2);
         airport2.setWeather(weather2);
         this.setSlots(airport2);
-        airport2.setRunwaysSet(this.setRunways(airport2));
+        this.setRunways(airport2);
         airportRepository.save(airport2);
     }
 
@@ -121,15 +121,13 @@ public class AirportServiceImpl implements IAirportService {
         }
     }
 
-    private List<Runway> setRunways(Airport airport) {
-        List<Runway> list = new ArrayList<>();
-        for (int i = 0; i < airport.getHangarCapacity(); i++) {
+    private void setRunways(Airport airport) {
+        for (int i = 0; i < airport.getRunwayCapacity(); i++) {
             Runway runway = new Runway();
             runway.setAirport(airport);
             runway.setFreeAfter(new Date());
-            list.add(runway);
+            airport.getRunwaysSet().add(runway);
         }
-        return list;
     }
 
 }

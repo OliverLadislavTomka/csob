@@ -7,6 +7,7 @@ import pohovor.projekt.csob.dbmodel.entities.airport.Airport;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Data
@@ -29,5 +30,18 @@ public class Runway extends MyEntity {
 
     public Boolean getFree() {
         return new Date().getTime() > this.freeAfter.getTime();
+    }
+
+    @Override
+    public String toString() {
+        return "Runway{" +
+                "freeAfter=" + freeAfter +
+                ", airport=" + airport +
+                '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), freeAfter);
     }
 }

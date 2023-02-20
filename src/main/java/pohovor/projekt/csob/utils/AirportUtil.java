@@ -24,8 +24,8 @@ public class AirportUtil {
     }
 
     public static void hasFreeHangar(Airport airport) {
-        if (airport.getAirportSlotSet().stream().anyMatch(airportSlot -> airportSlot.getAircraft() == null)) {
-            System.out.println("The airport currently does not have free hangars and therefore cannot accept not arrivals.");
+        if (airport.getAirportSlotSet().stream().allMatch(airportSlot -> airportSlot.getAircraft() != null)) {
+            System.out.println("The airport currently does not have free hangars and therefore cannot accept new arrivals.");
             throw new NoRunwaysAvailableException();
         }
     }

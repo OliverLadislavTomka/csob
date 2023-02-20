@@ -7,6 +7,7 @@ import pohovor.projekt.csob.dbmodel.entities.airport.Airport;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 
 @Entity
@@ -14,7 +15,7 @@ import java.util.Date;
 @Data
 public class Weather extends MyEntity {
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(nullable = false, name = DBconstants.Weather.airport_id)
     private Airport airport;
 
@@ -40,4 +41,16 @@ public class Weather extends MyEntity {
         return super.equals(o);
     }
 
+    @Override
+    public String toString() {
+        return "Weather{" +
+                "airport=" + airport +
+                ", updateDate=" + updateDate +
+                '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), updateDate);
+    }
 }
