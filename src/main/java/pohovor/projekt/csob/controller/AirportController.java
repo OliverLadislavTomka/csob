@@ -22,4 +22,11 @@ public class AirportController {
         return airportService.createNewFlight(airportId, request);
     }
 
+    @PostMapping
+    @ResponseBody
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public String createAirports() {
+        airportService.createAirport();
+        return "SUCCESS";
+    }
 }

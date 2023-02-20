@@ -14,12 +14,12 @@ import java.util.Date;
 @Data
 public class Weather extends MyEntity {
 
-    @OneToOne
-    @JoinColumn(name = DBconstants.Weather.airport_id, nullable = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false, name = DBconstants.Weather.airport_id)
     private Airport airport;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = DBconstants.Weather.updateDate, nullable = false)
+    @Column(name = DBconstants.Weather.updateDate)
     private Date updateDate;
 
     @PrePersist

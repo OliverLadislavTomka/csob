@@ -13,14 +13,11 @@ import java.util.Date;
 @Table(name = DBconstants.TableNames.airportRunway)
 public class Runway extends MyEntity {
 
-    @Column(nullable = false, name = DBconstants.Runway.isFree)
-    private Boolean free;
-
-    @Column(nullable = false, name = DBconstants.Runway.endUse)
+    @Column(name = DBconstants.Runway.endUse, nullable = false)
     private Date freeAfter;
 
     @ManyToOne
-    @JoinColumn(nullable = false, name = DBconstants.Runway.airport_id)
+    @JoinColumn(name = DBconstants.Runway.airport_id)
     private Airport airport;
 
     @Override
