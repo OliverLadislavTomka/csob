@@ -1,9 +1,6 @@
 package pohovor.projekt.csob.dbmodel.entities.Aircraft;
 
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GenerationTime;
 import pohovor.projekt.csob.dbmodel.DBconstants;
 import pohovor.projekt.csob.dbmodel.MyEntity;
 import pohovor.projekt.csob.dbmodel.entities.airportSlots.AirportSlot;

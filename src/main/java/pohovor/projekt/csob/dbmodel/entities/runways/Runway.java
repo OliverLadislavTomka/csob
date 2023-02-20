@@ -30,4 +30,7 @@ public class Runway extends MyEntity {
         return super.equals(o);
     }
 
+    public Boolean getFree() {
+        return new Date().getTime() > this.freeAfter.getTime();
+    }
 }

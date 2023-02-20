@@ -29,4 +29,9 @@ public abstract class MyEntity implements Serializable {
         MyEntity myEntity = (MyEntity) o;
         return Objects.equals(id, myEntity.id) && Objects.equals(creationDate, myEntity.creationDate);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, creationDate);
+    }
 }
